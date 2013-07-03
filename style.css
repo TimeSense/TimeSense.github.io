@@ -1,0 +1,53 @@
+body{
+    margin:0px;
+}
+
+.logo_text{
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size:5em;
+}
+
+#logo_text_part1{
+    color: #3399FF;
+}
+
+#logo_text_part2{
+    color: #CACACA;
+}
+
+#auth_stuff{
+    margin-top:50px;
+    margin-left:20px;
+}
+
+#logo{
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    font-size:2em;
+    display: inline-block;
+    width:15%;
+}
+
+#head_text{
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    font-size:4em;
+}
+
+.name_head_text{
+    color:#6AB6ED;
+}
+
+#disclaimer_text{
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    font-size:1em;
+}
+
+#product_description_welcome{
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+    font-size:2em;
+}
+
+.center {
+    float: none;
+    margin-left: auto;
+    margin-right: auto;
+}

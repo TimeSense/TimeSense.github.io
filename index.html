@@ -2,8 +2,157 @@
 <html>
 <head>
   <title>TimeSense</title>
+
+  <!--
+  DEBUG_MODE works with pre-saved, local data in the private_data.js file
+  This saves having to wait for the Google Calendar calls and
+  saving to GitHub each time
+  -->
+  <script type="text/javascript">
+    var DEBUG_MODE = false;
+    if (window.location.protocol == "file:"){
+      DEBUG_MODE = true;
+    }
+  </script>
+
+  <!-- Lodash -->
+  <script src="lodash.min.js"></script>
+
+  <script src="ts_data_format.js"></script>
+
+  <!-- Jquery.... self explanatory -->
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <!-- HighCharts -->
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+
+  <script src="ts_chart.js"></script>
+
+  <script src="data_private.js"></script>
+
+  <script src="crossfilter.min.js" type="text/javascript"></script>
+
+  <script src="json2.js" type="text/javascript"></script>
+
+  <!-- Auth code -->
+  <script src="ts_auth.js" type="text/javascript"></script>
+
+  <script src="ts_calendar.js" type="text/javascript"></script>
+
+  <!-- Page's Javascript -->
+  <script src="timesense.js" type="text/javascript"></script>
+
+  <!-- Page's CSS -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <!-- Bootstrap -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <script src="js/bootstrap.min.js"></script>
+
+
+
+  <script src="http://www.google.com/jsapi" type="text/javascript"></script>
+
+  <!-- Required for Javascript Google Authentication -->
+  <script src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+
+  <!-- there'scurrently a race condition if the user clicks on "Login" before
+  handleClientLoad returns -->
+
+
 </head>
+
 <body>
-TimeSense is here.
+<br/><br/>
+<div id="logo_block">
+  &nbsp;
+  <span id="logo_text_part1" class="logo_text">Time</span><span id="logo_text_part2" class="logo_text">Sen.se</span>
+</div>
+<div id="auth_stuff">
+  <div id='content1'>
+    <div id="head_text">Welcome to <span class="name_head_text">TimeSense</span></div>
+  </div>
+  <br/><br/>
+  <div id="product_description_welcome">
+    <span class="name_head_text">TimeSense</span>
+    shows you where your time is going.<br/><br/>
+    It <span class="name_head_text">visualizes</span> your life according to your Google Calendar <br/>
+    and gives you the data you need to make <span class="name_head_text">informed decisions</span> <br/>
+    about what you spend your time <span class="name_head_text">doing</span>
+
+  </div>
+  <br/>
+  <div id="body_text">
+    <br/>
+
+    <button id='authorize-button' onclick='handleAuthClick();' class="btn btn-large btn-primary">Login</button>
+
+    <br/><br/><br/>
+    <br/><br/><br/>
+    <div id="disclaimer_text">
+      All calendar data is stored locally in your browser. No calendar data is ever sent to TimeSense.<br/>
+      Authentication is done with Google directly via the industry-standard OAuth so TimeSense never sees your password.<br/>
+    </div>
+  </div>
+</div>
+
+
+<!-- TODO: can't have a calendar named all...
+<span id="calendar_list">
+
+<input type="radio" id = "calendar_choice_all" name="calendar_choice" value="all" checked><label for="calendar_choice_all" class = "radioLabel">All Calendars</label>
+</span>
+
+-->
+
+<div id="analysis">
+
+
+  <div class="tabbable span12">
+    <ul class="nav nav-pills">
+      <li><a href="#pane1" data-toggle="tab">Yesterday</a></li>
+      <li class="active"><a href="#pane2" data-toggle="tab">Today</a></li>
+      <li><a href="#pane3" data-toggle="tab">Week</a></li>
+      <li><a href="#pane4" data-toggle="tab">Zeitgeist</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="pane1" class="tab-pane">
+        <h4>The Markup</h4>
+        <pre>Code here ...</pre>
+      </div>
+      <div id="pane2" class="tab-pane active">
+        <h4>Calendars Today</h4>
+        <div class="row">
+          <div class="span6">
+            <div id="today_pie"></div>
+          </div>
+        </div>
+        <h4>Events Today</h4>
+        <div class="row">
+          <div class="span6">
+            <div id="today_events_bar"></div>
+          </div>
+        </div>
+      </div>
+      <div id="pane3" class="tab-pane">
+        <h4>Pane 3 Content</h4>
+        <div class="row">
+          <div class="span12">
+            <div id="week_column"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span12">
+            <div id="week_events_column"></div>
+          </div>
+        </div>
+      </div>
+      <div id="pane4" class="tab-pane">
+        <h4>Pane 4 Content</h4>
+      </div>
+    </div><!-- /.tab-content -->
+  </div><!-- /.tabbable -->
+</div>
 </body>
 </html>
